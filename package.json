@@ -1,0 +1,13 @@
+{
+  "name": "integration-chatbot",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "bottender": "0.14.34",
+    "nodemon": "1.17.5"
+  }
+}
