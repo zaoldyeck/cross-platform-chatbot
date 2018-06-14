@@ -1,19 +1,35 @@
-const {MessengerBot} = require('bottender');
-const {createServer} = require('bottender/koa');
+const express = require('express');
+const bodyParser = require('body-parser');
+const {
+    MessengerBot,
+    LineBot
+} = require('bottender');
+const {registerRoutes} = require('bottender/express');
 
-const config = require('./bottender.config.js').messenger;
+const handler = require('./handler');
+const config = require('./bottender.config');
 
-const bot = new MessengerBot({
-    accessToken: config.accessToken,
-    appSecret: config.appSecret,
+const server = new express();
+
+server.use(
+    bodyParser.json({
+        verify: (req, res, buf) => {
+            req.rawBody = buf.toString();
+        },
+    })
+);
+
+const bots = {
+    messenger: new MessengerBot(config.messenger).onEvent(handler),
+    line: new LineBot(config.line).onEvent(handler)
+};
+
+registerRoutes(server, bots.messenger, {
+    path: '/messenger',
+    verifyToken: config.messenger.verifyToken,
 });
-
-bot.onEvent(async context => {
-    await context.sendText('Hello World');
-});
-
-const server = createServer(bot);
+registerRoutes(server, bots.line, {path: '/line'});
 
 server.listen(5000, () => {
-    console.log('server is running on 5000 port...');
+    console.log('server is listening on 5000 port...');
 });
