@@ -7,7 +7,7 @@ const {
 const {registerRoutes} = require('bottender/express');
 
 const handler = require('./handler');
-const config = require('./bottender.config');
+const config = require('../config');
 
 const server = new express();
 

@@ -14,7 +14,7 @@ After creation, your project should look like this:
 my-bot/
   .gitignore
   node_modules/
-  bottender.config.js
+  config.js
   index.js
   package.json
   README.md
@@ -30,7 +30,7 @@ and [`Handler`](https://bottender.js.org/docs/APIReference-Handler) to enrich th
 See more examples, please refer to
 [Bottender examples](https://github.com/Yoctol/bottender/tree/master/examples).
 
-### bottender.config.js
+### config.js
 
 The config file for the bot.\
 We suggests you to put all platform configs into this file and use it as a parameter

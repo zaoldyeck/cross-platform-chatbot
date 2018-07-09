@@ -3,11 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "nodemon index.js",
-    "start": "node index.js"
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "bottender": "0.14.34",
+    "md5": "^2.2.1",
     "nodemon": "1.17.5"
   }
 }
