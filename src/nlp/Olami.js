@@ -22,20 +22,49 @@ class Olami {
                 rq: JSON.stringify({'data_type': 'stt', 'data': {'input_type': this.inputType, 'text': text}})
             }
         }).then(response => {
-            return response.data.data.nli[0].desc_obj.result
+            const nli = response.data.data.nli[0];
+            return this._intentDetection(nli)
         })
     }
 
-    _gen_parameters() {
+    _intentDetection(nli) {
+        const type = nli.type
+        const desc = nli.desc_obj
+        const data = nli.data_obj
 
-    }
+        function handleSelectionType(desc) {
+            const descType = desc.type
 
-    _gen_sign() {
+            switch (descType) {
+                case 'news':
+                    return desc.result + '\n\n' + data.map((el, index) => index + 1 + '. ' + el.title).join('\n')
+                case 'poem':
+                    return desc.result + '\n\n' + data.map((el, index) => index + 1 + '. ' + el.poem_name).join('\n')
+                case 'cooking':
+                    return desc.result + '\n\n' + data.map((el, index) => index + 1 + '. ' + el.name).join('\n')
+                default:
+                    return '對不起，你說的我還不懂，能換個說法嗎？'
+            }
+        }
 
-    }
-
-    _gen_rq() {
-
+        switch (type) {
+            case 'kkbox':
+                return (data.length > 0) ? data[0].url : desc.result
+            case 'baike':
+                return data[0].description
+            case 'news':
+                return data[0].detail
+            case 'joke':
+                return data[0].content
+            case 'cooking':
+                return data[0].content
+            case 'selection':
+                return handleSelectionType(desc)
+            case 'ds':
+                return desc.result + '\n請用 /help 指令看看我能怎麼幫助您'
+            default:
+                return desc.result
+        }
     }
 }
 
