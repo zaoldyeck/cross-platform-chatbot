@@ -8,7 +8,7 @@ module.exports = async context => {
     const reply = await olami.nli(text)
     console.log(reply)
     //await context.replyText(`Hello World. Platform: ${context.platform}`);
-    await context.replyText(reply);
+    await context.reply([reply.asLineMessage()]);
     /*
     await context.replyCarouselTemplate('this is a carousel template', [
         {

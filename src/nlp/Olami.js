@@ -1,6 +1,7 @@
 const config = require('../../config')
 const axios = require('axios')
 const md5 = require('md5')
+const TextMessage = require('../message/TextMessage');
 
 class Olami {
     constructor(appKey = config.olami.appKey, appSecret = config.olami.appSectet, inputType = 1) {
@@ -37,11 +38,11 @@ class Olami {
 
             switch (descType) {
                 case 'news':
-                    return desc.result + '\n\n' + data.map((el, index) => index + 1 + '. ' + el.title).join('\n')
+                    return new TextMessage(desc.result + '\n\n' + data.map((el, index) => index + 1 + '. ' + el.title).join('\n'))
                 case 'poem':
-                    return desc.result + '\n\n' + data.map((el, index) => index + 1 + '. ' + el.poem_name).join('\n')
+                    return new TextMessage(desc.result + '\n\n' + data.map((el, index) => index + 1 + '. ' + el.poem_name).join('\n'))
                 case 'cooking':
-                    return desc.result + '\n\n' + data.map((el, index) => index + 1 + '. ' + el.name).join('\n')
+                    return new TextMessage(desc.result + '\n\n' + data.map((el, index) => index + 1 + '. ' + el.name).join('\n'))
                 default:
                     return '對不起，你說的我還不懂，能換個說法嗎？'
             }
@@ -49,21 +50,21 @@ class Olami {
 
         switch (type) {
             case 'kkbox':
-                return (data.length > 0) ? data[0].url : desc.result
+                return (data.length > 0) ? new TextMessage(data[0].url) : new TextMessage(desc.result)
             case 'baike':
-                return data[0].description
+                return new TextMessage(data[0].description)
             case 'news':
-                return data[0].detail
+                return new TextMessage(data[0].detail)
             case 'joke':
-                return data[0].content
+                return new TextMessage(data[0].content)
             case 'cooking':
-                return data[0].content
+                return new TextMessage(data[0].content)
             case 'selection':
                 return handleSelectionType(desc)
             case 'ds':
-                return desc.result + '\n請用 /help 指令看看我能怎麼幫助您'
+                return new TextMessage(desc.result + '\n請用 /help 指令看看我能怎麼幫助您')
             default:
-                return desc.result
+                return new TextMessage(desc.result)
         }
     }
 }
