@@ -2,6 +2,8 @@ const config = require('../../config')
 const axios = require('axios')
 const md5 = require('md5')
 const TextMessage = require('../message/TextMessage');
+const KKBOXMessage = require('../message/KKBOXMessage')
+const KKBOX = require('../api/KKBOX')
 
 class Olami {
     constructor(appKey = config.olami.appKey, appSecret = config.olami.appSectet, inputType = 1) {
@@ -32,6 +34,7 @@ class Olami {
         const type = nli.type
         const desc = nli.desc_obj
         const data = nli.data_obj
+        const semantic = nli.semantic
 
         function handleSelectionType(desc) {
             const descType = desc.type
@@ -46,6 +49,36 @@ class Olami {
                 default:
                     return '對不起，你說的我還不懂，能換個說法嗎？'
             }
+        }
+
+        async function handleMusicKKBOXType(semantic) {
+            function getSlotValueByName(slotName) {
+                return semantic.slots.filter(slot => slot.name === slotName)[0].value
+            }
+
+            const dataType = semantic.modifier[0].split('_')[2]
+            const keyWord = (() => {
+                switch (dataType) {
+                    case 'artist':
+                        return getSlotValueByName('artist_name')
+                    case 'album':
+                        return getSlotValueByName('album_name')
+                    case 'track':
+                        return getSlotValueByName('track_name')
+                    case 'playlist':
+                        return getSlotValueByName('playlist')
+                }
+            })()
+
+            const api = await KKBOX.init()
+            const data = await api
+                .searchFetcher
+                .setSearchCriteria(keyWord, dataType)
+                .fetchSearchResult()
+                .then(response => {
+                    return response.data[dataType + 's']
+                })
+            return new TextMessage(data.data[0].url)
         }
 
         switch (type) {
@@ -63,6 +96,8 @@ class Olami {
                 return handleSelectionType(desc)
             case 'ds':
                 return new TextMessage(desc.result + '\n請用 /help 指令看看我能怎麼幫助您')
+            case 'music_kkbox':
+                return handleMusicKKBOXType(semantic[0])
             default:
                 return new TextMessage(desc.result)
         }
