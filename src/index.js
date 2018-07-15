@@ -6,7 +6,7 @@ const {
 } = require('bottender');
 const {registerRoutes} = require('bottender/express');
 
-const handler = require('./handler');
+const {lineHandler, messengerHandler} = require('./handler');
 const config = require('../config');
 
 const server = new express();
@@ -20,9 +20,9 @@ server.use(
 );
 
 const bots = {
-    messenger: new MessengerBot(config.messenger).onEvent(handler),
-    line: new LineBot(config.line).onEvent(handler)
-};
+    line: new LineBot(config.line).onEvent(lineHandler),
+    messenger: new MessengerBot(config.messenger).onEvent(messengerHandler)
+}
 
 registerRoutes(server, bots.messenger, {
     path: '/messenger',

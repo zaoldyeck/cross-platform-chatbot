@@ -1,13 +1,13 @@
 module.exports = class Message {
-    constructor(body) {
-        this.body = body
+    constructor(data) {
+        this.data = data
     }
 
     asLineMessage() {
-        return this.body
+        return this.data
     }
 
     asMessengerMessage() {
-        return this.body
+        return this.data
     }
 }

@@ -47,17 +47,16 @@ class Olami {
                 case 'cooking':
                     return new TextMessage(desc.result + '\n\n' + data.map((el, index) => index + 1 + '. ' + el.name).join('\n'))
                 default:
-                    return '對不起，你說的我還不懂，能換個說法嗎？'
+                    return new TextMessage('對不起，你說的我還不懂，能換個說法嗎？')
             }
         }
 
         async function handleMusicKKBOXType(semantic) {
-            function getSlotValueByName(slotName) {
-                return semantic.slots.filter(slot => slot.name === slotName)[0].value
-            }
+            function getKeyWord(semantic, dataType) {
+                function getSlotValueByName(slotName) {
+                    return semantic.slots.filter(slot => slot.name === slotName)[0].value
+                }
 
-            const dataType = semantic.modifier[0].split('_')[2]
-            const keyWord = (() => {
                 switch (dataType) {
                     case 'artist':
                         return getSlotValueByName('artist_name')
@@ -66,9 +65,12 @@ class Olami {
                     case 'track':
                         return getSlotValueByName('track_name')
                     case 'playlist':
-                        return getSlotValueByName('playlist')
+                        return getSlotValueByName('keyword')
                 }
-            })()
+            }
+
+            const dataType = semantic.modifier[0].split('_')[2]
+            const keyWord = getKeyWord(semantic, dataType)
 
             const api = await KKBOX.init()
             const data = await api
@@ -76,9 +78,9 @@ class Olami {
                 .setSearchCriteria(keyWord, dataType)
                 .fetchSearchResult()
                 .then(response => {
-                    return response.data[dataType + 's']
+                    return response.data[dataType + 's'].data
                 })
-            return new TextMessage(data.data[0].url)
+            return new KKBOXMessage(data)
         }
 
         switch (type) {
