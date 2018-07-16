@@ -3,11 +3,11 @@ module.exports = class Message {
         this.data = data
     }
 
-    asLineMessage() {
+    toLineMessage() {
         return this.data
     }
 
-    asMessengerMessage() {
+    toMessengerMessage() {
         return this.data
     }
 }

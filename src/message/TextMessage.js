@@ -6,7 +6,11 @@ module.exports = class TextMessage extends Message {
         super(data)
     }
 
-    asLineMessage() {
+    toLineMessage() {
         return Line.createText(this.data)
+    }
+
+    toMessengerMessage() {
+        return {text: this.data}
     }
 }

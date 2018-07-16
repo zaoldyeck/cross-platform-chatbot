@@ -23,7 +23,7 @@ exports.lineHandler = new LineHandler()
     .onText(async context => {
             const text = context.event.text
             const reply = await olami.nli(text)
-            await context.reply([reply.asLineMessage()])
+            await context.reply([reply.toLineMessage()])
         }
     )
 
@@ -31,5 +31,5 @@ exports.messengerHandler = new MessengerHandler()
     .onText(async context => {
         const text = context.event.text
         const reply = await olami.nli(text)
-        await context.reply([reply.asMessengerMessage()])
+        await context.sendMessage(reply.toMessengerMessage())
     })
