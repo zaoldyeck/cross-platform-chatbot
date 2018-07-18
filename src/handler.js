@@ -34,7 +34,7 @@ exports.lineHandler = new LineHandler()
 
 exports.messengerHandler = new MessengerHandler()
     .onText('\/help', async context => {
-        await context.replyText(helpMessage)
+        await context.sendText(helpMessage)
     })
     .onText(async context => {
         const text = context.event.text
