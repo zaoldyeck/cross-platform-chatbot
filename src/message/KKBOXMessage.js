@@ -23,46 +23,26 @@ module.exports = class KKBOXMessage extends Message {
     }
 
     toMessengerMessage() {
+        const elements = this.data.map(el => {
+            return {
+                title: el.name === undefined ? el.title : el.name,
+                subtitle: el.description === undefined || el.description === '' ? ' ' : el.description.slice(0, 60),
+                image_url: el.images === undefined ? el.album.images[1].url : el.images[1].url,
+                default_action: {
+                    type: "web_url",
+                    url: el.url,
+                    messenger_extensions: true,
+                    webview_height_ratio: "full"
+                }
+            }
+        }).slice(0, 4)
         return {
             attachment: {
                 type: 'template',
                 payload: {
                     "template_type": "list",
-                    "top_element_style": "compact",
-                    "elements": [
-                        {
-                            "title": "Classic T-Shirt Collection",
-                            "subtitle": "See all our colors",
-                            "image_url": "https://i.kfs.io/playlist/global/34601v1/fit/500x500.jpg",
-                            "buttons": [
-                                {
-                                    "title": "View",
-                                    "type": "web_url",
-                                    "url": "https://widget.kkbox.com/v1/?id=OtY2I4ebPHGasNyABp&amp;type=playlist&amp;terr=tw&amp;lang=tc",
-                                    "messenger_extensions": true,
-                                    "webview_height_ratio": "tall",
-                                    "fallback_url": "https://widget.kkbox.com/v1/?id=OtY2I4ebPHGasNyABp&amp;type=playlist&amp;terr=tw&amp;lang=tc"
-                                }
-                            ]
-                        },
-                        {
-                            "title": "Classic White T-Shirt",
-                            "subtitle": "See all our colors",
-                            "default_action": {
-                                "type": "web_url",
-                                "url": "https://widget.kkbox.com/v1/?id=OtY2I4ebPHGasNyABp&amp;type=playlist&amp;terr=tw&amp;lang=tc",
-                                "messenger_extensions": false,
-                                "webview_height_ratio": "tall"
-                            }
-                        }
-                    ],
-                    "buttons": [
-                        {
-                            "title": "View More",
-                            "type": "postback",
-                            "payload": "payload"
-                        }
-                    ]
+                    "top_element_style": "large",
+                    "elements": elements
                 }
             }
         }
