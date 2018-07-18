@@ -6,7 +6,7 @@ exports.lineHandler = new LineHandler()
         await context.replyText('歡迎你')
     })
     .onText('\/help', async context => {
-        await context.replyText('Hello~ 本 Bot 是用 http://bit.ly/2uz7wY4 開源程式碼所完成\n\n' +
+        await context.replyText('Hi~ 本 Bot 是用 http://bit.ly/2uz7wY4 開源程式碼打造\n\n' +
             '您可以問我\n' +
             '天氣，例如：「台北天氣如何」\n' +
             '百科，例如：「川普是誰」\n' +
@@ -26,10 +26,16 @@ exports.lineHandler = new LineHandler()
             await context.reply([reply.toLineMessage()])
         }
     )
+    .onError(async (context, err) => {
+        await context.reply('對不起唷~ 我需要多一點時間來處理 Q_Q')
+    })
 
 exports.messengerHandler = new MessengerHandler()
     .onText(async context => {
         const text = context.event.text
         const reply = await olami.nli(text)
         await context.sendMessage(reply.toMessengerMessage())
+    })
+    .onError(async (context, err) => {
+        await context.sendText('對不起唷~ 我需要多一點時間來處理 Q_Q')
     })
