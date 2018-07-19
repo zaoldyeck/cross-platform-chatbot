@@ -21,11 +21,11 @@ const bots = {
     messenger: new MessengerBot(config.messenger).onEvent(messengerHandler)
 }
 
+registerRoutes(server, bots.line, {path: '/line'})
 registerRoutes(server, bots.messenger, {
     path: '/messenger',
     verifyToken: config.messenger.verifyToken,
 })
-registerRoutes(server, bots.line, {path: '/line'})
 
 server.listen(process.env.PORT || 5000, () => {
     console.log('server is listening on 5000 port...')

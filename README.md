@@ -1,52 +1,20 @@
-This project was bootstrapped with
-[Bottender](https://github.com/Yoctol/bottender) init script.
+# Integration Chatbot
+Before you start, you should read [workshop.md](https://github.com/zaoldyeck/integration-chatbot/blob/master/workshop.md).
+<br/>
+All the things you need to know for how to build this chatbot are described in this [slide](https://slides.com/zaoldyeck/bi-dashboard-implementation-554a582a-fbab-4b3a-bc94-d01995569562).
 
-## Sending Feedback
+## License
 
-Always feel free to open issue to
-[Bottender](https://github.com/Yoctol/bottender/issues).
+Copyright 2018 KKBOX Technologies Limited
 
-## Folder Structure
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
 
-After creation, your project should look like this:
+    http://www.apache.org/licenses/LICENSE-2.0
 
-```
-my-bot/
-  .gitignore
-  node_modules/
-  config.js
-  index.js
-  package.json
-  README.md
-  yarn.lock
-```
-
-### index.js
-
-All functionalities start from here.\
-Mainly it's a server which listen on port 5000. You are encouraged to add more [event listener](https://bottender.js.org/docs/APIReference-Event)
-and [`Handler`](https://bottender.js.org/docs/APIReference-Handler) to enrich the bot.
-
-See more examples, please refer to
-[Bottender examples](https://github.com/Yoctol/bottender/tree/master/examples).
-
-### config.js
-
-The config file for the bot.\
-We suggests you to put all platform configs into this file and use it as a parameter
-of createServer.
-
-## Available Scripts
-
-There are two default scripts you can run:
-
-### `npm run dev`
-
-Run the bot in the development mode.\
-It will automatically restart the bot if there are any changes in `index.js`.\
-For more information, check [nodemon's repo](https://github.com/remy/nodemon)
-
-### `npm start`
-
-Run the bot without being monitored.\
-The bot won't be restarted when you change anything in `index.js`
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.

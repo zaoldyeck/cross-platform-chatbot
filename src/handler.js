@@ -23,13 +23,15 @@ exports.lineHandler = new LineHandler()
         await context.replyText(helpMessage)
     })
     .onText(async context => {
+            console.log('有進來嗎')
             const text = context.event.text
             const reply = await olami.nli(text)
+            console.log(reply)
             await context.reply([reply.toLineMessage()])
         }
     )
     .onError(async (context, err) => {
-        await context.reply('對不起唷~ 我需要多一點時間來處理 Q_Q')
+        await context.replyText('對不起唷~ 我需要多一點時間來處理 Q_Q')
     })
 
 exports.messengerHandler = new MessengerHandler()
