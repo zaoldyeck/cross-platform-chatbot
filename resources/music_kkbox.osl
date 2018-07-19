@@ -1,0 +1,27 @@
+!slot <artist_name:ext.'{}'(1|10)>;
+!slot <album_name:ext.'{}'(1|10)>;
+!slot <keyword:ext.'{}'(1|10)>;
+!slot <track_name:ext.'{}'(1|10)>;
+!intention <music_kkbox>;
+!modifier <music_kkbox> : music_play_playlist|music_play_album|music_play_track|music_play_artist;
+
+<music_kkbox>:<music_play_playlist_1>|
+    <music_play_track_1>|
+    <music_play_artist_1>|
+    <music_play_album_1>;
+//All grammar-event
+
+//All context grammar-event
+
+//All rules
+//All templates
+//All grammars
+//*C:播放動漫歌曲類型的歌
+<music_play_playlist_1>:播放<keyword>類型的歌<{@=music_play_playlist}>;
+//*C:播放派對動物
+<music_play_track_1>:播放<track_name><{@=music_play_track}>;
+//*C:播放五月天的歌
+<music_play_artist_1>:播放<artist_name>的歌<{@=music_play_artist}>;
+//*C:播放自傳專輯的歌
+<music_play_album_1>:播放<album_name>專輯的歌<{@=music_play_album}>;
+//All context grammars
