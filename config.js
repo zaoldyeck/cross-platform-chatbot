@@ -1,12 +1,12 @@
 module.exports = {
+    line: {
+        channelSecret: '',
+        accessToken: ''
+    },
     messenger: {
         accessToken: '',
         appSecret: '',
         verifyToken: '',
-    },
-    line: {
-        channelSecret: '',
-        accessToken: ''
     },
     telegram: {
         accessToken: '',

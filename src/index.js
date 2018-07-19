@@ -1,9 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const {
-    MessengerBot,
-    LineBot
-} = require('bottender')
+const {MessengerBot, LineBot} = require('bottender')
 const {registerRoutes} = require('bottender/express')
 
 const {lineHandler, messengerHandler} = require('./handler')
@@ -30,6 +27,6 @@ registerRoutes(server, bots.messenger, {
 })
 registerRoutes(server, bots.line, {path: '/line'})
 
-server.listen(5000, () => {
+server.listen(process.env.PORT || 5000, () => {
     console.log('server is listening on 5000 port...')
 })
