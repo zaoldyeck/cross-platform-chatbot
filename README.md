@@ -1,7 +1,7 @@
 # Integration Chatbot
 Before you start, you should read [workshop.md](https://github.com/zaoldyeck/integration-chatbot/blob/master/workshop.md).
 <br/>
-All the things you need to know for how to build this chatbot are described in this [slide](https://slides.com/zaoldyeck/bi-dashboard-implementation-554a582a-fbab-4b3a-bc94-d01995569562).
+All the things you need to know for how to build this chatbot are described in this [slide](https://lihi.cc/5Fh1U).
 
 ## License
 
