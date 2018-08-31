@@ -10,7 +10,7 @@ module.exports = class KKBOXMessage extends Message {
         const columns = this.data.map(el => {
             return {
                 thumbnailImageUrl: el.images === undefined ? el.album.images[1].url : el.images[1].url,
-                title: el.name === undefined ? el.title : el.name,
+                title: el.name === undefined ? el.title.slice(0, 40) : el.name.slice(0, 40),
                 text: el.description === undefined || el.description === '' ? ' ' : el.description.slice(0, 60),
                 actions: [{
                     type: 'uri',
