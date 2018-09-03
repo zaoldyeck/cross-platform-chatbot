@@ -25,7 +25,7 @@ exports.lineHandler = new LineHandler()
     .onText(async context => {
             console.log('有進來嗎')
             const text = context.event.text
-            const reply = await olami.nli(text)
+            const reply = await olami.nli(text, context._session.user.id)
             console.log(reply)
             await context.reply([reply.toLineMessage()])
         }
