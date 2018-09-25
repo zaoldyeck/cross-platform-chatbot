@@ -23,10 +23,8 @@ exports.lineHandler = new LineHandler()
         await context.replyText(helpMessage)
     })
     .onText(async context => {
-            console.log('有進來嗎')
             const text = context.event.text
             const reply = await olami.nli(text, context._session.user.id)
-            console.log(reply)
             await context.reply([reply.toLineMessage()])
         }
     )
@@ -40,7 +38,7 @@ exports.messengerHandler = new MessengerHandler()
     })
     .onText(async context => {
         const text = context.event.text
-        const reply = await olami.nli(text)
+        const reply = await olami.nli(text, context._session.user.id)
         await context.sendMessage(reply.toMessengerMessage())
     })
     .onError(async (context, err) => {
