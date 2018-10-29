@@ -1,5 +1,5 @@
 # LINE Bot Workshop 行前準備
-Hello, 歡迎您報名 Line Bot Workshop. 為了使當天活動能夠流暢進行，有一些準備工作希望您能在 Workshop 活動前，花十分鐘完成。
+Hello, 歡迎您報名 LINE Bot Workshop。為了使當天活動能夠流暢進行，有一些準備工作希望您能在 Workshop 活動前，花十分鐘完成。
 1. 註冊 [Line Developers](https://developers.line.me/console/register/messaging-api/provider/)
 2. 按照 LINE 官方教學[步驟](https://developers.line.me/en/docs/messaging-api/getting-started/) Create a channel, 取得 `Channel secret` 及 `Channel access token`
 - 在 Step 4: Create a channel 時，請選擇 `Free` Plan![plan](https://imgur.com/hBrSEds.png)

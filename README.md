@@ -1,11 +1,11 @@
-# Integration Chatbot
+# Cross Platform Chatbot
 Before you start, you should read [workshop.md](https://github.com/zaoldyeck/integration-chatbot/blob/master/workshop.md).
 <br/>
 All the things you need to know for how to build this chatbot are described in this [slide](https://lihi.cc/5Fh1U).
 
 ## License
 
-Copyright 2018 KKBOX Technologies Limited
+Copyright 2018 zaoldyeck
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
