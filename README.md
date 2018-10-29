@@ -1,7 +1,9 @@
 # Cross Platform Chatbot
-Before you start, you should read [workshop.md](https://github.com/zaoldyeck/integration-chatbot/blob/master/workshop.md).
+This repository is a workshop material. 
 <br/>
-All the things you need to know for how to build this chatbot are described in this [slide](https://lihi.cc/5Fh1U).
+If you are a participant, you must complete the [workshop_preparation.md](https://github.com/zaoldyeck/cross-platform-chatbot/blob/master/workshop_preparation.md) before the event begins.
+<br/>
+Details on how this program is implemented are described in this [slide](https://slides.com/zaoldyeck/chatbot-workshop).
 
 ## License
 
