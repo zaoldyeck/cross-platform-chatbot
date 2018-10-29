@@ -1,7 +1,7 @@
 const {LineHandler, MessengerHandler} = require('bottender')
 const olami = require('./nlp/Olami')
 
-const helpMessage = 'Hi~ 本 Bot 是用 http://bit.ly/2uz7wY4 開源程式碼打造\n\n' +
+const welcomeMessage = 'Hi~ 本 Bot 是用 https://goo.gl/YWhP2L 開源程式碼打造\n\n' +
     '您可以問我\n' +
     '天氣：「台北天氣如何」\n' +
     '百科：「川普是誰」\n' +
@@ -17,10 +17,10 @@ const helpMessage = 'Hi~ 本 Bot 是用 http://bit.ly/2uz7wY4 開源程式碼打
 
 exports.lineHandler = new LineHandler()
     .onFollow(async context => {
-        await context.replyText(helpMessage)
+        await context.replyText(welcomeMessage)
     })
     .onText('\/help', async context => {
-        await context.replyText(helpMessage)
+        await context.replyText(welcomeMessage)
     })
     .onText(async context => {
             const text = context.event.text
@@ -34,7 +34,7 @@ exports.lineHandler = new LineHandler()
 
 exports.messengerHandler = new MessengerHandler()
     .onText('\/help', async context => {
-        await context.sendText(helpMessage)
+        await context.sendText(welcomeMessage)
     })
     .onText(async context => {
         const text = context.event.text
