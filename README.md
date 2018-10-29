@@ -1,4 +1,4 @@
-# Cross Platform Chatbot
+# Cross-platform Chatbot
 This repository is a workshop material. 
 <br/>
 If you are a participant, you must complete the [workshop_preparation.md](https://github.com/zaoldyeck/cross-platform-chatbot/blob/master/workshop_preparation.md) before the event begins.
