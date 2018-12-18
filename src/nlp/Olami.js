@@ -80,7 +80,7 @@ class Olami {
                 .then(response => {
                     return response.data[dataType + 's'].data
                 })
-            return new KKBOXMessage(data)
+            return new KKBOXMessage(data, dataType)
         }
 
         switch (type) {

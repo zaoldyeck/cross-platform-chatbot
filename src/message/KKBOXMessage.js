@@ -2,8 +2,9 @@ const Message = require('./Message')
 const {Line} = require('messaging-api-line')
 
 module.exports = class KKBOXMessage extends Message {
-    constructor(data) {
-        super(data)
+    constructor(data, dataType) {
+        super(data, dataType)
+        this.dataType = dataType
     }
 
     toLineMessage() {
@@ -15,7 +16,7 @@ module.exports = class KKBOXMessage extends Message {
                 actions: [{
                     type: 'uri',
                     label: 'Open in KKBOX',
-                    uri: el.url
+                    uri: this.dataType === 'artist' ? el.url : `https://widget.kkbox.com/v1/?id=${el.id}&type=${this.dataType === 'track' ? 'song' : this.dataType}`
                 }]
             }
         }).slice(0, 10)
