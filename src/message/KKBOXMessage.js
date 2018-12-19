@@ -31,7 +31,7 @@ module.exports = class KKBOXMessage extends Message {
                 image_url: el.images === undefined ? el.album.images[1].url : el.images[1].url,
                 default_action: {
                     type: "web_url",
-                    url: el.url,
+                    url: this.dataType === 'artist' ? el.url : `https://widget.kkbox.com/v1/?id=${el.id}&type=${this.dataType === 'track' ? 'song' : this.dataType}`,
                     messenger_extensions: true,
                     webview_height_ratio: "full"
                 }
